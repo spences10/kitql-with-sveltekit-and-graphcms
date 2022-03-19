@@ -1,0 +1,16 @@
+query AllPosts {
+  posts {
+    title
+    slug
+    date
+    excerpt
+    tags
+    coverImage {
+      url(
+        transformation: {
+          image: { resize: { fit: clip, height: 369, width: 656 } }
+        }
+      )
+    }
+  }
+}
