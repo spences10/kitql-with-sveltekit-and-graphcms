@@ -1,0 +1,9 @@
+query AllPages {
+  pages {
+    title
+    slug
+    content {
+      html
+    }
+  }
+}

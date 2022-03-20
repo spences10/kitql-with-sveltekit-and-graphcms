@@ -1,0 +1,24 @@
+query GetPost($slug: String!) {
+  post(where: { slug: $slug }) {
+    title
+    date
+    tags
+    author {
+      name
+      authorTitle: title
+      picture {
+        url(
+          transformation: {
+            image: { resize: { fit: clip, height: 50, width: 50 } }
+          }
+        )
+      }
+    }
+    content {
+      html
+    }
+    coverImage {
+      url
+    }
+  }
+}
