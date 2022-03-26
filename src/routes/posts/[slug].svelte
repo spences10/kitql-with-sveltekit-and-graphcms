@@ -2,7 +2,8 @@
   import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores'
   export const load = async ({ params, fetch }) => {
     const { slug } = params
-    if (slug) await KQL_GetPost.query({ fetch, variables: { slug } })
+    if (slug)
+      await KQL_GetPost.queryLoad({ fetch, variables: { slug } })
     return {}
   }
 </script>
@@ -20,7 +21,7 @@
 </script>
 
 <svelte:head>
-  <title>KitQL with GraphCMS | {title}</title>
+  <title>KitQL with GraphCMS | {title || null}</title>
 </svelte:head>
 
 <div class="sm:-mx-5 md:-mx-10 lg:-mx-20 xl:-mx-38 mb-5">

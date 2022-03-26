@@ -2,7 +2,7 @@
   import { KQL_GetPage } from '$lib/graphql/_kitql/graphqlStores'
   export const load = async ({ params, fetch }) => {
     const { slug } = params
-    await KQL_GetPage.query({ fetch, variables: { slug } })
+    await KQL_GetPage.queryLoad({ fetch, variables: { slug } })
     return {}
   }
 </script>
@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-  <title>KitQL with GraphCMS | {page.title}</title>
+  <title>KitQL with GraphCMS | {page.title || null}</title>
 </svelte:head>
 
 <h1 class="text-4xl font-semibold mb-5">{page.title}</h1>

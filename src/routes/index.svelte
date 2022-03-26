@@ -1,8 +1,9 @@
 <script lang="ts" context="module">
-  import { KQL_AllPosts } from '$lib/graphql/_kitql/graphqlStores'
+  import { KitQLInfo } from '@kitql/all-in'
+  import { KQL_AllPosts } from '../lib/graphql/_kitql/graphqlStores'
 
   export const load = async ({ fetch }) => {
-    await KQL_AllPosts.query({ fetch })
+    await KQL_AllPosts.queryLoad({ fetch })
     return {}
   }
 </script>
@@ -10,6 +11,8 @@
 <script lang="ts">
   let posts = $KQL_AllPosts.data?.posts
 </script>
+
+<KitQLInfo store={KQL_AllPosts} />
 
 <svelte:head>
   <title>KitQL with GraphCMS | Welcome</title>

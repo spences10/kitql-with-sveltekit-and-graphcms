@@ -7,7 +7,7 @@
   import '../app.css'
 
   export const load = async ({ fetch }) => {
-    await KQL_AllPages.query({ fetch })
+    await KQL_AllPages.queryLoad({ fetch })
     return {}
   }
 </script>
