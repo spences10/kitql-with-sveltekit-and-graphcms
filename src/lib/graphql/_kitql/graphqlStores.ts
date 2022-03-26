@@ -1,14 +1,28 @@
 import { browser } from '$app/env';
 import * as Types from '$lib/graphql/_kitql/graphqlTypes';
-import { clientNavigation, defaultStoreValue, RequestStatus, type PatchType, type RequestQueryParameters, type RequestResult } from '@kitql/client';
+import { defaultStoreValue, RequestStatus, type PatchType, type RequestQueryParameters, type RequestResult } from '@kitql/client';
 import { get, writable } from 'svelte/store';
 import { kitQLClient } from '../kitQLClient';
+ 
+/* Internal. To skip await on a client side navigation in the load function (from queryLoad)! */
+let clientStarted = false; // Will be true on a client side navigation
+if (browser) {
+	addEventListener('sveltekit:start', () => {
+		clientStarted = true;
+	});
+}
+ 
+/**
+ * ResetAllCaches in One function!
+ */
 export function KQL__ResetAllCaches() {
 	KQL_AllPages.resetCache();
 	KQL_AllPosts.resetCache();
 	KQL_GetPage.resetCache();
 	KQL_GetPost.resetCache();
 }
+ 
+/* Operations 👇 */
 function KQL_AllPagesStore() {
 	const operationName = 'KQL_AllPages';
 
@@ -82,8 +96,8 @@ function KQL_AllPagesStore() {
 		queryLoad: async (
 			params?: RequestQueryParameters<Types.AllPagesQueryVariables>
 		): Promise<void> => {
-			if (clientNavigation) {
-				queryLocal(params); // No await in clientNavigation mode.
+			if (clientStarted) {
+				queryLocal(params); // No await in purpose, we are in a client navigation.
 			} else {
 				await queryLocal(params);
 			}
@@ -201,8 +215,8 @@ function KQL_AllPostsStore() {
 		queryLoad: async (
 			params?: RequestQueryParameters<Types.AllPostsQueryVariables>
 		): Promise<void> => {
-			if (clientNavigation) {
-				queryLocal(params); // No await in clientNavigation mode.
+			if (clientStarted) {
+				queryLocal(params); // No await in purpose, we are in a client navigation.
 			} else {
 				await queryLocal(params);
 			}
@@ -320,8 +334,8 @@ function KQL_GetPageStore() {
 		queryLoad: async (
 			params?: RequestQueryParameters<Types.GetPageQueryVariables>
 		): Promise<void> => {
-			if (clientNavigation) {
-				queryLocal(params); // No await in clientNavigation mode.
+			if (clientStarted) {
+				queryLocal(params); // No await in purpose, we are in a client navigation.
 			} else {
 				await queryLocal(params);
 			}
@@ -439,8 +453,8 @@ function KQL_GetPostStore() {
 		queryLoad: async (
 			params?: RequestQueryParameters<Types.GetPostQueryVariables>
 		): Promise<void> => {
-			if (clientNavigation) {
-				queryLocal(params); // No await in clientNavigation mode.
+			if (clientStarted) {
+				queryLocal(params); // No await in purpose, we are in a client navigation.
 			} else {
 				await queryLocal(params);
 			}
