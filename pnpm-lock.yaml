@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@kitql/all-in': 0.6.0
+  '@kitql/all-in': 0.6.1
   '@playwright/test': 1.20.0
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
@@ -27,7 +27,7 @@ specifiers:
   typescript: 4.6.3
 
 devDependencies:
-  '@kitql/all-in': 0.6.0_typescript@4.6.3
+  '@kitql/all-in': 0.6.1_typescript@4.6.3
   '@playwright/test': 1.20.0
   '@sveltejs/adapter-auto': 1.0.0-next.33
   '@sveltejs/kit': 1.0.0-next.303_svelte@3.46.4
@@ -89,7 +89,7 @@ packages:
       convert-source-map: 1.8.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
-      json5: 2.2.0
+      json5: 2.2.1
       semver: 6.3.0
       source-map: 0.5.7
     transitivePeerDependencies:
@@ -1242,8 +1242,8 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-tools/graphql-tag-pluck': 7.1.5_graphql@16.3.0
-      '@graphql-tools/utils': 8.6.1_graphql@16.3.0
+      '@graphql-tools/graphql-tag-pluck': 7.2.0_graphql@16.3.0
+      '@graphql-tools/utils': 8.6.5_graphql@16.3.0
       globby: 11.1.0
       graphql: 16.3.0
       tslib: 2.3.1
@@ -1335,7 +1335,7 @@ packages:
       '@babel/parser': 7.17.8
       '@babel/traverse': 7.17.3
       '@babel/types': 7.17.0
-      '@graphql-tools/utils': 8.6.1_graphql@16.3.0
+      '@graphql-tools/utils': 8.6.5_graphql@16.3.0
       graphql: 16.3.0
       tslib: 2.3.1
     transitivePeerDependencies:
@@ -1596,8 +1596,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.11
     dev: true
 
-  /@kitql/all-in/0.6.0_typescript@4.6.3:
-    resolution: {integrity: sha512-0Vnipok9aUTAQKHvIeR3C1Nc+cploWli85SGZOBMdGI1GOIe1Qd9wsEPgktaz8BIuiz8pusQxuRoscopb+Q19w==}
+  /@kitql/all-in/0.6.1_typescript@4.6.3:
+    resolution: {integrity: sha512-suV05HDM8b1+vW80TP+cDrDaRV0afcKGBZcmuHp3GILBvzkFbpB22sIBN0YaQRaANVu5XVKZHdHe+EIEIfvgqA==}
     dependencies:
       '@graphql-codegen/cli': 2.6.2_graphql@16.3.0+typescript@4.6.3
       '@graphql-codegen/graphql-modules-preset': 2.3.8_graphql@16.3.0
@@ -1609,7 +1609,7 @@ packages:
       '@graphql-codegen/typescript-resolvers': 2.6.1_graphql@16.3.0
       '@graphql-eslint/eslint-plugin': 3.9.1_graphql@16.3.0+typescript@4.6.3
       '@graphql-typed-document-node/core': 3.1.1_graphql@16.3.0
-      '@kitql/client': 0.5.0_typescript@4.6.3
+      '@kitql/client': 0.5.1_typescript@4.6.3
       '@kitql/graphql-codegen': 0.5.0_graphql@16.3.0
       '@kitql/module-codegen': 0.3.0_graphql@16.3.0
       '@kitql/vite-plugin-watch-and-run': 0.3.0
@@ -1624,10 +1624,10 @@ packages:
       - zen-observable
     dev: true
 
-  /@kitql/client/0.5.0_typescript@4.6.3:
-    resolution: {integrity: sha512-htezW2JLXeX7Uc6DlHEq21xs3XGQNRx95J3qlOB0f0MLKqSiOqNA+UWC75sF+hjnVGgIZLmczNLIoWLPB8WMyA==}
+  /@kitql/client/0.5.1_typescript@4.6.3:
+    resolution: {integrity: sha512-38tJX47mstAqrZhNQkSUDTRJmDejijpabSLE/PL/CVEXEBmLBwdARZEINyX8UietPxgz7CRhNoSeYXCjzNLRUg==}
     dependencies:
-      '@kitql/all-in': 0.6.0_typescript@4.6.3
+      '@kitql/all-in': 0.6.1_typescript@4.6.3
       '@kitql/helper': 0.3.0
     transitivePeerDependencies:
       - '@types/node'
@@ -3642,7 +3642,7 @@ packages:
       '@graphql-tools/load': 7.5.5_graphql@16.3.0
       '@graphql-tools/merge': 8.2.6_graphql@16.3.0
       '@graphql-tools/url-loader': 7.9.7_graphql@16.3.0
-      '@graphql-tools/utils': 8.6.1_graphql@16.3.0
+      '@graphql-tools/utils': 8.6.5_graphql@16.3.0
       cosmiconfig: 7.0.1
       cosmiconfig-toml-loader: 1.0.0
       graphql: 16.3.0
