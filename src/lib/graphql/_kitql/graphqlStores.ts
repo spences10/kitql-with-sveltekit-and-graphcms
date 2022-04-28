@@ -1,8 +1,15 @@
 import { browser } from '$app/env';
 import * as Types from '$lib/graphql/_kitql/graphqlTypes';
-import { defaultStoreValue, RequestStatus, type PatchType, type RequestQueryParameters, type RequestResult } from '@kitql/client';
+import { defaultStoreValue, RequestStatus, ResponseResultType, type PatchType, type RequestQueryParameters, type RequestResult } from '@kitql/client';
 import { get, writable } from 'svelte/store';
 import { kitQLClient } from '../kitQLClient';
+ 
+/**
+ * Init KitQL (to have clientStarted = true!)
+ *
+ * Waiting for: https://github.com/sveltejs/kit/issues/4447
+ */
+export function KQL__Init() {}
  
 /* Internal. To skip await on a client side navigation in the load function (from queryLoad)! */
 let clientStarted = false; // Will be true on a client side navigation
@@ -25,9 +32,10 @@ export function KQL__ResetAllCaches() {
 /* Operations 👇 */
 function KQL_AllPagesStore() {
 	const operationName = 'KQL_AllPages';
+	const operationType = ResponseResultType.Query;
 
 	// prettier-ignore
-	const { subscribe, set, update } = writable<RequestResult<Types.AllPagesQuery, Types.AllPagesQueryVariables>>({...defaultStoreValue, operationName});
+	const { subscribe, set, update } = writable<RequestResult<Types.AllPagesQuery, Types.AllPagesQueryVariables>>({...defaultStoreValue, operationName, operationType});
 
 		async function queryLocal(
 			params?: RequestQueryParameters<Types.AllPagesQueryVariables>
@@ -73,6 +81,7 @@ function KQL_AllPagesStore() {
 				document: Types.AllPagesDocument,
 				variables, 
 				operationName, 
+				operationType, 
 				browser
 			});
 			const result = { ...res, isFetching: false, status: RequestStatus.DONE, variables };
@@ -144,9 +153,10 @@ export const KQL_AllPages = KQL_AllPagesStore();
 
 function KQL_AllPostsStore() {
 	const operationName = 'KQL_AllPosts';
+	const operationType = ResponseResultType.Query;
 
 	// prettier-ignore
-	const { subscribe, set, update } = writable<RequestResult<Types.AllPostsQuery, Types.AllPostsQueryVariables>>({...defaultStoreValue, operationName});
+	const { subscribe, set, update } = writable<RequestResult<Types.AllPostsQuery, Types.AllPostsQueryVariables>>({...defaultStoreValue, operationName, operationType});
 
 		async function queryLocal(
 			params?: RequestQueryParameters<Types.AllPostsQueryVariables>
@@ -192,6 +202,7 @@ function KQL_AllPostsStore() {
 				document: Types.AllPostsDocument,
 				variables, 
 				operationName, 
+				operationType, 
 				browser
 			});
 			const result = { ...res, isFetching: false, status: RequestStatus.DONE, variables };
@@ -263,9 +274,10 @@ export const KQL_AllPosts = KQL_AllPostsStore();
 
 function KQL_GetPageStore() {
 	const operationName = 'KQL_GetPage';
+	const operationType = ResponseResultType.Query;
 
 	// prettier-ignore
-	const { subscribe, set, update } = writable<RequestResult<Types.GetPageQuery, Types.GetPageQueryVariables>>({...defaultStoreValue, operationName});
+	const { subscribe, set, update } = writable<RequestResult<Types.GetPageQuery, Types.GetPageQueryVariables>>({...defaultStoreValue, operationName, operationType});
 
 		async function queryLocal(
 			params?: RequestQueryParameters<Types.GetPageQueryVariables>
@@ -311,6 +323,7 @@ function KQL_GetPageStore() {
 				document: Types.GetPageDocument,
 				variables, 
 				operationName, 
+				operationType, 
 				browser
 			});
 			const result = { ...res, isFetching: false, status: RequestStatus.DONE, variables };
@@ -382,9 +395,10 @@ export const KQL_GetPage = KQL_GetPageStore();
 
 function KQL_GetPostStore() {
 	const operationName = 'KQL_GetPost';
+	const operationType = ResponseResultType.Query;
 
 	// prettier-ignore
-	const { subscribe, set, update } = writable<RequestResult<Types.GetPostQuery, Types.GetPostQueryVariables>>({...defaultStoreValue, operationName});
+	const { subscribe, set, update } = writable<RequestResult<Types.GetPostQuery, Types.GetPostQueryVariables>>({...defaultStoreValue, operationName, operationType});
 
 		async function queryLocal(
 			params?: RequestQueryParameters<Types.GetPostQueryVariables>
@@ -430,6 +444,7 @@ function KQL_GetPostStore() {
 				document: Types.GetPostDocument,
 				variables, 
 				operationName, 
+				operationType, 
 				browser
 			});
 			const result = { ...res, isFetching: false, status: RequestStatus.DONE, variables };
