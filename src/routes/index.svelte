@@ -1,18 +1,9 @@
-<script lang="ts" context="module">
-  import { KitQLInfo } from '@kitql/all-in'
-  import { KQL_AllPosts } from '../lib/graphql/_kitql/graphqlStores'
-
-  export const load = async ({ fetch }) => {
-    await KQL_AllPosts.queryLoad({ fetch })
-    return {}
-  }
-</script>
-
 <script lang="ts">
-  let posts = $KQL_AllPosts.data?.posts
+  import { browser } from '$app/env'
+  import { GQL_AllPosts } from '$houdini'
+  $: browser && GQL_AllPosts.fetch()
+  $: posts = $GQL_AllPosts.data?.posts || []
 </script>
-
-<KitQLInfo store={KQL_AllPosts} />
 
 <svelte:head>
   <title>KitQL with GraphCMS | Welcome</title>

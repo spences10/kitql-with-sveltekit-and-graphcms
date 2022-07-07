@@ -5,13 +5,10 @@
     "paths": {
       "$lib": ["src/lib"],
       "$lib/*": ["src/lib/*"],
-      "$stores/*": ["src/stores/*"]
+      "$graphql": ["src/lib/graphql"],
+      "$graphql/*": ["src/lib/graphql/*"],
+      "$houdini": ["$houdini"],
+      "$houdini/*": ["$houdini/*"]
     }
-  },
-  "include": [
-    "src/**/*.d.ts",
-    "src/**/*.js",
-    "src/**/*.svelte",
-    "src/lib/utils/index.ts"
-  ]
+  }
 }

@@ -2,12 +2,13 @@
   "name": "kitql-with-sveltekit-and-graphcms",
   "version": "0.0.1",
   "scripts": {
-    "prepare": "pnpm run gen",
-    "dev": "svelte-kit dev --port 3777",
-    "gen": "graphql-codegen --require dotenv/config",
-    "build": "svelte-kit build",
+    "prepare": "svelte-kit sync && npm run gen",
+    "gen": "pnpm gen:houdini",
+    "gen:houdini": "houdini generate",
+    "dev": "vite dev",
+    "build": "vite build",
     "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
+    "preview": "vite preview",
     "test": "playwright test",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -26,7 +27,6 @@
     "eslint": "8.19.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-svelte3": "4.0.0",
-    "graphql": "16.3.0",
     "postcss": "8.4.14",
     "postcss-load-config": "4.0.1",
     "prettier": "2.7.1",
@@ -37,10 +37,12 @@
     "tailwindcss": "3.1.4",
     "theme-change": "2.1.0",
     "tslib": "2.4.0",
-    "typescript": "4.7.4"
+    "typescript": "4.7.4",
+    "vite": "2.9.13"
   },
   "type": "module",
   "dependencies": {
-    "@kitql/all-in": "0.6.3"
+    "@kitql/all-in": "0.7.1",
+    "graphql": "16.5.0"
   }
 }

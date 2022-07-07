@@ -1,22 +1,30 @@
-<script lang="ts" context="module">
+<script context="module" lang="ts">
   import Footer from '$lib/components/footer.svelte'
   import Navbar from '$lib/components/navbar.svelte'
-  import { KQL_AllPages } from '$lib/graphql/_kitql/graphqlStores'
   import { onMount } from 'svelte'
   import { themeChange } from 'theme-change'
   import '../app.css'
 
-  export const load = async ({ fetch }) => {
-    await KQL_AllPages.queryLoad({ fetch })
-    return {}
-  }
+  import { browser } from '$app/env'
+  import { houdiniClient } from '$graphql/client'
+  import { GQL_AllPages } from '$houdini'
+
+  houdiniClient.init()
 </script>
 
-<script>
-  let pages = $KQL_AllPages.data?.pages
+<script lang="ts">
+  $: browser && GQL_AllPages.fetch()
   onMount(() => {
     themeChange(false)
   })
+  $: pages = $GQL_AllPages.data?.pages || [
+    {
+      title: null,
+      slug: null,
+      content: { html: null },
+      id: null,
+    },
+  ]
 </script>
 
 <Navbar {pages} />
