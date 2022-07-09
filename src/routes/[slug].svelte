@@ -1,22 +1,33 @@
 <script lang="ts" context="module">
-  import { KQL_GetPage } from '$lib/graphql/_kitql/graphqlStores'
-  export const load = async ({ params, fetch }) => {
-    const { slug } = params
-    await KQL_GetPage.queryLoad({ fetch, variables: { slug } })
-    return {}
+  import { browser } from '$app/env'
+  import { GQL_GetPage, type GetPage$input } from '$houdini'
+  import type { LoadEvent } from '@sveltejs/kit'
+
+  export const load = async (event: LoadEvent) => {
+    const variables = { slug: event.params.slug }
+
+    await GQL_GetPage.fetch({ event, variables })
+    return {
+      props: { variables },
+    }
   }
 </script>
 
 <script lang="ts">
-  let page = $KQL_GetPage.data?.page
+  export let variables: GetPage$input
+  $: browser && GQL_GetPage.fetch({ variables })
+  $: ({
+    title,
+    content: { html },
+  } = $GQL_GetPage.data?.page || { title: null, content: { html } })
 </script>
 
 <svelte:head>
-  <title>KitQL with GraphCMS | {page.title || null}</title>
+  <title>KitQL with GraphCMS | {title || ``}</title>
 </svelte:head>
 
-<h1 class="text-4xl font-semibold mb-5">{page.title}</h1>
+<h1 class="text-4xl font-semibold mb-5">{title}</h1>
 
 <article class="prose">
-  {@html page.content.html}
+  {@html html}
 </article>

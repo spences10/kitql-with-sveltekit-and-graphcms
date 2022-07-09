@@ -1,27 +1,41 @@
-<script context="module">
-  import { KQL_GetPost } from '$lib/graphql/_kitql/graphqlStores'
-  export const load = async ({ params, fetch }) => {
-    const { slug } = params
-    if (slug)
-      await KQL_GetPost.queryLoad({ fetch, variables: { slug } })
-    return {}
+<script lang="ts" context="module">
+  import { GQL_GetPost, type GetPost$input } from '$houdini'
+  import type { LoadEvent } from '@sveltejs/kit'
+
+  export const load = async (event: LoadEvent) => {
+    const variables = { slug: event.params.slug }
+
+    await GQL_GetPost.fetch({ event, variables })
+    return {
+      props: { variables },
+    }
   }
 </script>
 
 <script lang="ts">
-  let post = $KQL_GetPost.data?.post
-  const {
+  import { browser } from '$app/env'
+
+  export let variables: GetPost$input
+  $: browser && GQL_GetPost.fetch({ variables })
+  $: ({
     title,
     date,
     tags,
     author: { name, authorTitle, picture },
     content: { html },
     coverImage,
-  } = post
+  } = $GQL_GetPost.data?.post || {
+    title: null,
+    date: null,
+    tags: [],
+    author: { name, authorTitle, picture },
+    content: { html },
+    coverImage,
+  })
 </script>
 
 <svelte:head>
-  <title>KitQL with GraphCMS | {title || null}</title>
+  <title>KitQL with GraphCMS | {title || ``}</title>
 </svelte:head>
 
 <div class="sm:-mx-5 md:-mx-10 lg:-mx-20 xl:-mx-38 mb-5">

@@ -1,5 +1,5 @@
-import watchAndRun from '@kitql/vite-plugin-watch-and-run'
 import adapter from '@sveltejs/adapter-auto'
+import houdini from 'houdini/preprocess'
 import preprocess from 'svelte-preprocess'
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -10,20 +10,11 @@ const config = {
     preprocess({
       postcss: true,
     }),
+    houdini(),
   ],
 
   kit: {
     adapter: adapter(),
-    vite: {
-      plugins: [
-        watchAndRun([
-          {
-            watch: '**/*.(gql|graphql)',
-            run: 'pnpm run gen',
-          },
-        ]),
-      ],
-    },
   },
 }
 
