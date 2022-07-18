@@ -19,7 +19,7 @@
     "@playwright/test": "1.23.3",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
-    "@tailwindcss/typography": "0.5.2",
+    "@tailwindcss/typography": "0.5.4",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
     "autoprefixer": "10.4.7",
